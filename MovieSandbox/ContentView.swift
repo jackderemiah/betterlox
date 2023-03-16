@@ -6,16 +6,79 @@
 //
 
 import SwiftUI
+import Foundation
 
 struct ContentView: View {
+    @ObservedObject var homeVM = HomeViewModel()
+    @State private var selection = "home"
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        
+        TabView(selection: $selection) {
+            HomeView(vm: homeVM)
+                .tabItem {
+                    Image(systemName: "house.fill")
+                       }
+                       .tag("home")
+                       
+            
+            Text("search")
+                .tabItem {
+                    Image(systemName: "magnifyingglass")
+                   }
+                       .tag("search")
+                       
+        }.accentColor(Color.orange)
+     
+       
+    }
+        
+}
+
+class HomeViewModel: ObservableObject{
+    @Published var genres: [Genre] = []
+    @Published var trendingMovies: [Movie] = []
+    @Published var selectedGenres = Set<Genre>()
+    init(){
+        Task{
+          await fetchGenres()
+          await getTrendingMovies()
         }
-        .padding()
+    }
+    
+    
+    func fetchGenres() async {
+        let r = Request(url: URL(string: "https://api.themoviedb.org/3/genre/movie/list?api_key=\(Keys.API_KEY)&language=en-US")!)
+        do{
+           let data = try await r.fetch()
+            let genres = decode(data, type: Genres.self)
+            if genres != nil {
+                self.genres = genres!.genres
+            }
+           
+            
+        }
+        catch{
+            print("Error getting genres \(error)")
+            
+        }
+    }
+    
+    func getTrendingMovies() async {
+        let r = Request(url: URL(string: "https://api.themoviedb.org/3/trending/all/day?api_key=\(Keys.API_KEY)")!)
+        
+        do{
+           let data = try await r.fetch()
+            let movieResponse = decode(data, type: MovieResponse.self)
+            if movieResponse != nil {
+                self.trendingMovies = movieResponse!.results
+            }
+            
+        }
+        catch{
+            print("Error getting genres \(error)")
+            
+        }
     }
 }
 
