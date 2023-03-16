@@ -40,6 +40,7 @@ class HomeViewModel: ObservableObject{
     @Published var trendingMovies: [Movie] = []
     @Published var selectedGenres = Set<Genre>()
     init(){
+        let k = Keys()
         Task{
           await fetchGenres()
           await getTrendingMovies()

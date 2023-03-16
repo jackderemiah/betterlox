@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D61F4E6E29C3C328005A0EB5 /* GenreBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61F4E6D29C3C328005A0EB5 /* GenreBubble.swift */; };
 		D61F4E7129C3C385005A0EB5 /* UtilityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61F4E7029C3C385005A0EB5 /* UtilityFunctions.swift */; };
+		D61F4E7529C3CE37005A0EB5 /* .env in Resources */ = {isa = PBXBuildFile; fileRef = D61F4E7429C3CE37005A0EB5 /* .env */; };
 		D678E78329C38A4800A6FA43 /* Betterlox.swift in Sources */ = {isa = PBXBuildFile; fileRef = D678E78229C38A4800A6FA43 /* Betterlox.swift */; };
 		D678E78529C38A4800A6FA43 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D678E78429C38A4800A6FA43 /* ContentView.swift */; };
 		D678E78729C38A4C00A6FA43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D678E78629C38A4C00A6FA43 /* Assets.xcassets */; };
@@ -44,6 +45,7 @@
 /* Begin PBXFileReference section */
 		D61F4E6D29C3C328005A0EB5 /* GenreBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreBubble.swift; sourceTree = "<group>"; };
 		D61F4E7029C3C385005A0EB5 /* UtilityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityFunctions.swift; sourceTree = "<group>"; };
+		D61F4E7429C3CE37005A0EB5 /* .env */ = {isa = PBXFileReference; lastKnownFileType = text; path = .env; sourceTree = "<group>"; };
 		D678E77F29C38A4800A6FA43 /* MovieSandbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieSandbox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D678E78229C38A4800A6FA43 /* Betterlox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Betterlox.swift; sourceTree = "<group>"; };
 		D678E78429C38A4800A6FA43 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				D678E78429C38A4800A6FA43 /* ContentView.swift */,
 				D678E78629C38A4C00A6FA43 /* Assets.xcassets */,
 				D678E78829C38A4C00A6FA43 /* Preview Content */,
+				D61F4E7429C3CE37005A0EB5 /* .env */,
 			);
 			path = MovieSandbox;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D61F4E7529C3CE37005A0EB5 /* .env in Resources */,
 				D678E78A29C38A4C00A6FA43 /* Preview Assets.xcassets in Resources */,
 				D678E78729C38A4C00A6FA43 /* Assets.xcassets in Resources */,
 			);
