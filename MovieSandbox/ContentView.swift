@@ -22,13 +22,19 @@ struct ContentView: View {
                        .tag("home")
                        
             
-            Text("search")
+            SearchView()
                 .tabItem {
                     Image(systemName: "magnifyingglass")
                    }
                        .tag("search")
+            
+            Text("profile")
+                .tabItem {
+                    Image(systemName: "person")
+                   }
+                       .tag("profile")
                        
-        }.accentColor(Color.orange)
+        }
      
        
     }

@@ -30,7 +30,7 @@ class Keys {
             .reduce(into: [:]) { $0[$1.0] = $1.1 }
         
         // Access individual environment variables
-        let apiKey = ProcessInfo.processInfo.environment["API_KEY"]
+//        let apiKey = ProcessInfo.processInfo.environment["API_KEY"]
         Keys.API_KEY = String(envDict["API_KEY"]!)
     }
 }
