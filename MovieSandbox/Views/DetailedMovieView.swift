@@ -6,13 +6,21 @@
 //
 
 import SwiftUI
+import Foundation
+import CoreData
 
 struct DetailedMovieView: View {
+    @Environment(\.managedObjectContext) private var viewContext
     var movie: Movie
     @State var poster: UIImage? = nil
     @State var backdrop: UIImage? = nil
     @State var isLoading = false
     @State var recommendations: [Movie]? = nil
+    @State var directors: [String] = []
+    
+    @FetchRequest(entity: MovieItem.entity(), sortDescriptors: [])
+   
+    private var movies: FetchedResults<MovieItem>
     
     // show recommendations in a horizontal scroll view
     var body: some View {
@@ -54,8 +62,30 @@ struct DetailedMovieView: View {
                         HStack(alignment: .top){
                             VStack(alignment: .leading, spacing: 10){
                                 Text(movie.title ?? "").font(.headline).bold()
-                                Text(movie.release_date?.split(separator: "-")[0] ?? "")
+                                if movie.release_date?.split(separator: "-").count ?? 0 > 0 {
+                                    Text(movie.release_date?.split(separator: "-")[0] ?? "")
+                                }
+                                if directors.count > 0{
+                                    HStack(alignment: .top){
+                                        Text("directed by")
+                                        ForEach(directors, id: \.self){ director in
+                                            Text(director).font(.caption).bold().foregroundColor(.gray)
+                                        }
+                                    }
+                                }
                                 
+                               
+                                Button{
+                                  print(addItem(movie))
+                                    
+                                }label:{
+                                    if movies.map { Int($0.id)}.contains(movie.id!){
+                                        Image(systemName: "star.fill").foregroundColor(.yellow)
+                                    }else{
+                                        Image(systemName: "star").foregroundColor(.gray)
+                                    }
+                                   
+                                }
                             }
                             Spacer()
                             if poster != nil {
@@ -135,6 +165,7 @@ struct DetailedMovieView: View {
                         self.poster = requests[0]
                         self.backdrop = requests[1]
                         self.recommendations = await getRecommendations()
+                        self.directors = await getMovieDirector(movie)
                         isLoading = false
                     }
                 }
@@ -165,6 +196,31 @@ struct DetailedMovieView: View {
             return []
         }
        
+    }
+    
+    
+    private func addItem(_ movie: Movie) -> Bool {
+        withAnimation {
+            let x = MovieItem(context: viewContext)
+            x.id = Int32(movie.id!)
+            x.title = movie.title
+            x.vote_average = movie.vote_average ?? 0.0
+            x.backdrop_path = movie.backdrop_path
+            x.release_date = movie.release_date
+            x.poster_path = movie.poster_path
+            x.genre_ids = movie.genre_ids as NSObject?
+            x.overview = movie.overview
+            x.popularity = movie.popularity ?? 0.0
+            do {
+                try viewContext.save()
+                return true
+            } catch {
+               
+                let nsError = error as NSError
+                print("Unresolved error \(nsError), \(nsError.userInfo)")
+                return false
+            }
+        }
     }
     }
 

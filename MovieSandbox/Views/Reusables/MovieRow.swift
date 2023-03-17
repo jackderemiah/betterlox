@@ -31,6 +31,7 @@ struct MovieRow: View {
             Text(movie.title ?? "").bold().foregroundColor(.gray.opacity(0.95))
             
         }.padding()
+           
             
         .onAppear{
             Task{

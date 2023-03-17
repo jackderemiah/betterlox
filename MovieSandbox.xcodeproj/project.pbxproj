@@ -14,6 +14,9 @@
 		D61F4E7929C3DF7C005A0EB5 /* DetailedMovieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61F4E7829C3DF7C005A0EB5 /* DetailedMovieView.swift */; };
 		D61F4E7B29C3E9E7005A0EB5 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61F4E7A29C3E9E7005A0EB5 /* ImageService.swift */; };
 		D61F4E7D29C42B17005A0EB5 /* MovieRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61F4E7C29C42B16005A0EB5 /* MovieRow.swift */; };
+		D61F4EBF29C4F21F005A0EB5 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61F4EBE29C4F21F005A0EB5 /* ProfileView.swift */; };
+		D61F4EFD29C4F6C1005A0EB5 /* Letterboxd.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D61F4EFB29C4F6C1005A0EB5 /* Letterboxd.xcdatamodeld */; };
+		D61F4EFF29C4F6C9005A0EB5 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61F4EFE29C4F6C9005A0EB5 /* Persistence.swift */; };
 		D678E78329C38A4800A6FA43 /* Betterlox.swift in Sources */ = {isa = PBXBuildFile; fileRef = D678E78229C38A4800A6FA43 /* Betterlox.swift */; };
 		D678E78529C38A4800A6FA43 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D678E78429C38A4800A6FA43 /* ContentView.swift */; };
 		D678E78729C38A4C00A6FA43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D678E78629C38A4C00A6FA43 /* Assets.xcassets */; };
@@ -23,6 +26,7 @@
 		D678E7A029C38A4D00A6FA43 /* MovieSandboxUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D678E79F29C38A4D00A6FA43 /* MovieSandboxUITestsLaunchTests.swift */; };
 		D678E7AE29C38B5900A6FA43 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = D678E7AD29C38B5900A6FA43 /* Keys.swift */; };
 		D678E7B129C38BB100A6FA43 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = D678E7B029C38BB100A6FA43 /* Request.swift */; };
+		D6959BD429C5214F00AC4561 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6959BD329C5214F00AC4561 /* GridView.swift */; };
 		D6E075B629C396D300A27894 /* Genres.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E075B529C396D300A27894 /* Genres.swift */; };
 		D6E075B829C3972400A27894 /* Decoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E075B729C3972400A27894 /* Decoding.swift */; };
 		D6E075BA29C3A0E900A27894 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6E075B929C3A0E900A27894 /* Movie.swift */; };
@@ -54,6 +58,9 @@
 		D61F4E7829C3DF7C005A0EB5 /* DetailedMovieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedMovieView.swift; sourceTree = "<group>"; };
 		D61F4E7A29C3E9E7005A0EB5 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
 		D61F4E7C29C42B16005A0EB5 /* MovieRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRow.swift; sourceTree = "<group>"; };
+		D61F4EBE29C4F21F005A0EB5 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		D61F4EFC29C4F6C1005A0EB5 /* Letterboxd.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Letterboxd.xcdatamodel; sourceTree = "<group>"; };
+		D61F4EFE29C4F6C9005A0EB5 /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Persistence.swift; path = ../../Letterboxd/Letterboxd/Persistence.swift; sourceTree = "<group>"; };
 		D678E77F29C38A4800A6FA43 /* MovieSandbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieSandbox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D678E78229C38A4800A6FA43 /* Betterlox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Betterlox.swift; sourceTree = "<group>"; };
 		D678E78429C38A4800A6FA43 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -66,6 +73,7 @@
 		D678E79F29C38A4D00A6FA43 /* MovieSandboxUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSandboxUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D678E7AD29C38B5900A6FA43 /* Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		D678E7B029C38BB100A6FA43 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		D6959BD329C5214F00AC4561 /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 		D6E075B529C396D300A27894 /* Genres.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genres.swift; sourceTree = "<group>"; };
 		D6E075B729C3972400A27894 /* Decoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoding.swift; sourceTree = "<group>"; };
 		D6E075B929C3A0E900A27894 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
@@ -135,6 +143,8 @@
 				D678E7AC29C38B4000A6FA43 /* Auth */,
 				D678E78229C38A4800A6FA43 /* Betterlox.swift */,
 				D678E78429C38A4800A6FA43 /* ContentView.swift */,
+				D61F4EFE29C4F6C9005A0EB5 /* Persistence.swift */,
+				D61F4EFB29C4F6C1005A0EB5 /* Letterboxd.xcdatamodeld */,
 				D678E78629C38A4C00A6FA43 /* Assets.xcassets */,
 				D678E78829C38A4C00A6FA43 /* Preview Content */,
 				D61F4E7429C3CE37005A0EB5 /* .env */,
@@ -201,6 +211,7 @@
 				D6E075BE29C3C24200A27894 /* Reusables */,
 				D6E075BC29C3A70900A27894 /* HomeView.swift */,
 				D61F4E7829C3DF7C005A0EB5 /* DetailedMovieView.swift */,
+				D61F4EBE29C4F21F005A0EB5 /* ProfileView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -210,6 +221,7 @@
 			children = (
 				D61F4E6D29C3C328005A0EB5 /* GenreBubble.swift */,
 				D61F4E7C29C42B16005A0EB5 /* MovieRow.swift */,
+				D6959BD329C5214F00AC4561 /* GridView.swift */,
 			);
 			path = Reusables;
 			sourceTree = "<group>";
@@ -353,11 +365,15 @@
 				D61F4E7929C3DF7C005A0EB5 /* DetailedMovieView.swift in Sources */,
 				D61F4E6E29C3C328005A0EB5 /* GenreBubble.swift in Sources */,
 				D6E075BD29C3A70900A27894 /* HomeView.swift in Sources */,
+				D61F4EFF29C4F6C9005A0EB5 /* Persistence.swift in Sources */,
+				D61F4EBF29C4F21F005A0EB5 /* ProfileView.swift in Sources */,
 				D61F4E7B29C3E9E7005A0EB5 /* ImageService.swift in Sources */,
 				D6E075B829C3972400A27894 /* Decoding.swift in Sources */,
 				D61F4E7129C3C385005A0EB5 /* UtilityFunctions.swift in Sources */,
 				D61F4E7D29C42B17005A0EB5 /* MovieRow.swift in Sources */,
+				D61F4EFD29C4F6C1005A0EB5 /* Letterboxd.xcdatamodeld in Sources */,
 				D678E78329C38A4800A6FA43 /* Betterlox.swift in Sources */,
+				D6959BD429C5214F00AC4561 /* GridView.swift in Sources */,
 				D61F4E7729C3D174005A0EB5 /* SearchView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -683,6 +699,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D61F4EFB29C4F6C1005A0EB5 /* Letterboxd.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D61F4EFC29C4F6C1005A0EB5 /* Letterboxd.xcdatamodel */,
+			);
+			currentVersion = D61F4EFC29C4F6C1005A0EB5 /* Letterboxd.xcdatamodel */;
+			path = Letterboxd.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = D678E77729C38A4700A6FA43 /* Project object */;
 }

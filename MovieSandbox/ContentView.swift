@@ -9,6 +9,8 @@ import SwiftUI
 import Foundation
 
 struct ContentView: View {
+    @Environment(\.managedObjectContext) private var viewContext
+
     @ObservedObject var homeVM = HomeViewModel()
     @State private var selection = "home"
     
@@ -28,7 +30,7 @@ struct ContentView: View {
                    }
                        .tag("search")
             
-            Text("profile")
+            ProfileView()
                 .tabItem {
                     Image(systemName: "person")
                    }
