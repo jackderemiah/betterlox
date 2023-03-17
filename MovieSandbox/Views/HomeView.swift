@@ -36,10 +36,12 @@ struct HomeView: View {
                         }
                     }
                 }.padding()
+                VStack(alignment: .leading){
+                Text("Trending").font(.title).bold().foregroundColor(.orange)
+                    .padding(.bottom)
                 ScrollView{
-                    VStack(alignment: .leading){
-                        Text("Trending").font(.title).bold().foregroundColor(.orange)
-                            .padding(.bottom)
+                   
+                       
                         ForEach(vm.trendingMovies){ tM in
                             if tM.genre_ids != nil {
                                 if vm.selectedGenres.count == 0 {
@@ -47,8 +49,7 @@ struct HomeView: View {
                                         NavigationLink{
                                             DetailedMovieView(movie: tM)
                                         }label:{
-                                            Text(tM.title!).italic()
-                                                .foregroundColor(Color(uiColor: .lightGray))
+                                           MovieRow(movie: tM)
                                         }
                                         
                                     }
@@ -57,7 +58,7 @@ struct HomeView: View {
                                         NavigationLink{
                                             DetailedMovieView(movie: tM)
                                         }label:{
-                                            Text(tM.title!).italic()
+                                            MovieRow(movie: tM)
                                         }
                                         
                                     }
@@ -77,7 +78,7 @@ struct HomeView: View {
                         
                         
                         
-                    }
+                }
                 }
                 
                 

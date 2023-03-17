@@ -60,7 +60,10 @@ class HomeViewModel: ObservableObject{
            let data = try await r.fetch()
             let genres = decode(data, type: Genres.self)
             if genres != nil {
-                self.genres = genres!.genres
+                DispatchQueue.main.async {
+                    self.genres = genres!.genres
+                }
+                
             }
            
             
@@ -78,7 +81,10 @@ class HomeViewModel: ObservableObject{
            let data = try await r.fetch()
             let movieResponse = decode(data, type: MovieResponse.self)
             if movieResponse != nil {
-                self.trendingMovies = movieResponse!.results
+                DispatchQueue.main.async {
+                    self.trendingMovies = movieResponse!.results
+                }
+               
             }
             
         }

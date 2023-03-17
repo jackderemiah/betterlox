@@ -35,13 +35,12 @@ struct SearchView: View {
                                 NavigationLink{
                                     DetailedMovieView(movie: movie)
                                 }label:{
-                                    Text(movie.title!)
-                                        .bold()
-                                        .foregroundColor(.gray)
+                                    MovieRow(movie: movie)
+                                       
                                 }
                                 
                             }
-                            
+                                
                         }
                     }else{
                         ProgressView().frame(width: 50, height: 50)

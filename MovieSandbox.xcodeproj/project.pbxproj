@@ -10,6 +10,10 @@
 		D61F4E6E29C3C328005A0EB5 /* GenreBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61F4E6D29C3C328005A0EB5 /* GenreBubble.swift */; };
 		D61F4E7129C3C385005A0EB5 /* UtilityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61F4E7029C3C385005A0EB5 /* UtilityFunctions.swift */; };
 		D61F4E7529C3CE37005A0EB5 /* .env in Resources */ = {isa = PBXBuildFile; fileRef = D61F4E7429C3CE37005A0EB5 /* .env */; };
+		D61F4E7729C3D174005A0EB5 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61F4E7629C3D174005A0EB5 /* SearchView.swift */; };
+		D61F4E7929C3DF7C005A0EB5 /* DetailedMovieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61F4E7829C3DF7C005A0EB5 /* DetailedMovieView.swift */; };
+		D61F4E7B29C3E9E7005A0EB5 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61F4E7A29C3E9E7005A0EB5 /* ImageService.swift */; };
+		D61F4E7D29C42B17005A0EB5 /* MovieRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D61F4E7C29C42B16005A0EB5 /* MovieRow.swift */; };
 		D678E78329C38A4800A6FA43 /* Betterlox.swift in Sources */ = {isa = PBXBuildFile; fileRef = D678E78229C38A4800A6FA43 /* Betterlox.swift */; };
 		D678E78529C38A4800A6FA43 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D678E78429C38A4800A6FA43 /* ContentView.swift */; };
 		D678E78729C38A4C00A6FA43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D678E78629C38A4C00A6FA43 /* Assets.xcassets */; };
@@ -46,6 +50,10 @@
 		D61F4E6D29C3C328005A0EB5 /* GenreBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenreBubble.swift; sourceTree = "<group>"; };
 		D61F4E7029C3C385005A0EB5 /* UtilityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilityFunctions.swift; sourceTree = "<group>"; };
 		D61F4E7429C3CE37005A0EB5 /* .env */ = {isa = PBXFileReference; lastKnownFileType = text; path = .env; sourceTree = "<group>"; };
+		D61F4E7629C3D174005A0EB5 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		D61F4E7829C3DF7C005A0EB5 /* DetailedMovieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedMovieView.swift; sourceTree = "<group>"; };
+		D61F4E7A29C3E9E7005A0EB5 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
+		D61F4E7C29C42B16005A0EB5 /* MovieRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRow.swift; sourceTree = "<group>"; };
 		D678E77F29C38A4800A6FA43 /* MovieSandbox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieSandbox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D678E78229C38A4800A6FA43 /* Betterlox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Betterlox.swift; sourceTree = "<group>"; };
 		D678E78429C38A4800A6FA43 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -172,6 +180,7 @@
 			children = (
 				D678E7B029C38BB100A6FA43 /* Request.swift */,
 				D6E075B729C3972400A27894 /* Decoding.swift */,
+				D61F4E7A29C3E9E7005A0EB5 /* ImageService.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -188,8 +197,10 @@
 		D6E075BB29C3A6FB00A27894 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D61F4E7629C3D174005A0EB5 /* SearchView.swift */,
 				D6E075BE29C3C24200A27894 /* Reusables */,
 				D6E075BC29C3A70900A27894 /* HomeView.swift */,
+				D61F4E7829C3DF7C005A0EB5 /* DetailedMovieView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -198,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				D61F4E6D29C3C328005A0EB5 /* GenreBubble.swift */,
+				D61F4E7C29C42B16005A0EB5 /* MovieRow.swift */,
 			);
 			path = Reusables;
 			sourceTree = "<group>";
@@ -338,11 +350,15 @@
 				D6E075B629C396D300A27894 /* Genres.swift in Sources */,
 				D678E7B129C38BB100A6FA43 /* Request.swift in Sources */,
 				D678E7AE29C38B5900A6FA43 /* Keys.swift in Sources */,
+				D61F4E7929C3DF7C005A0EB5 /* DetailedMovieView.swift in Sources */,
 				D61F4E6E29C3C328005A0EB5 /* GenreBubble.swift in Sources */,
 				D6E075BD29C3A70900A27894 /* HomeView.swift in Sources */,
+				D61F4E7B29C3E9E7005A0EB5 /* ImageService.swift in Sources */,
 				D6E075B829C3972400A27894 /* Decoding.swift in Sources */,
 				D61F4E7129C3C385005A0EB5 /* UtilityFunctions.swift in Sources */,
+				D61F4E7D29C42B17005A0EB5 /* MovieRow.swift in Sources */,
 				D678E78329C38A4800A6FA43 /* Betterlox.swift in Sources */,
+				D61F4E7729C3D174005A0EB5 /* SearchView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
