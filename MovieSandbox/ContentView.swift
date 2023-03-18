@@ -19,7 +19,7 @@ struct ContentView: View {
         TabView(selection: $selection) {
             HomeView(vm: homeVM)
                 .tabItem {
-                    Image(systemName: "house.fill")
+                    Image(systemName: "chart.line.uptrend.xyaxis.circle")
                        }
                        .tag("home")
                        

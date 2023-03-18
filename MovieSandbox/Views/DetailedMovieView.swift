@@ -68,7 +68,8 @@ struct DetailedMovieView: View {
                             Image(systemName: "eye.slash").foregroundColor(.gray)
                         }
                     }
-                    }.padding()
+                    }.padding(.horizontal)
+                        .padding(.bottom)
                     if movie.backdrop_path != nil{
                         if let backdrop = backdrop {
                             
