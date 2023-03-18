@@ -19,6 +19,8 @@ struct ProfileView: View {
         VStack(alignment: .leading){
 
         WatchListView()
+            
+        WatchedView()
         }.frame(maxWidth: .infinity)
             .padding()
         
@@ -85,6 +87,50 @@ struct WatchListView: View {
     private func deleteItems(offsets: IndexSet) {
         withAnimation {
             offsets.map { watchlistMovies[$0] }.forEach(viewContext.delete)
+
+            do {
+                try viewContext.save()
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+        }
+    }
+}
+
+
+struct WatchedView: View {
+    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(entity: Watched.entity(), sortDescriptors: [])
+    private var watched: FetchedResults<Watched>
+    var body: some View{
+        Text("Watched").font(.title).bold().foregroundColor(.orange)
+            .padding(.bottom)
+        List {
+            ForEach(watched) { movie in
+               
+                
+                HStack{
+                    MovieRow(movie: movieFromWatched(movie)!)
+                }
+               
+                
+            }
+            .onDelete(perform: deleteItems)
+        }
+        
+
+
+
+       
+    }
+    
+    
+    private func deleteItems(offsets: IndexSet) {
+        withAnimation {
+            offsets.map { watched[$0] }.forEach(viewContext.delete)
 
             do {
                 try viewContext.save()

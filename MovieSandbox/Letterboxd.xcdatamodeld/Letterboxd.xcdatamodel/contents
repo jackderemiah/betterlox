@@ -20,8 +20,8 @@
         <attribute name="vote_average" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
     <entity name="Watched" representedClassName="Watched" syncable="YES" codeGenerationType="class">
-        <attribute name="movie" optional="YES" attributeType="Transformable"/>
         <attribute name="rating" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="movie" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MovieItem"/>
     </entity>
     <entity name="Watchlist" representedClassName="Watchlist" syncable="YES" codeGenerationType="class">
         <relationship name="movie" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MovieItem"/>
