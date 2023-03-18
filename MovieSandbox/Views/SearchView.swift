@@ -10,6 +10,7 @@ import SwiftUI
 struct SearchView: View {
     @ObservedObject var vm = SearchViewModel()
     @State var searchText: String = ""
+    @State var fetchingMoreMovies: Bool = false
     var body: some View {
         
         NavigationView{
@@ -50,6 +51,10 @@ struct SearchView: View {
                                         
                                    
                                 }
+                                    if fetchingMoreMovies{
+                                        ProgressView("fetching more movies ...")
+                                            .frame(alignment: .centerLastTextBaseline)
+                                    }
                              
                             }
                             .frame(maxWidth: .infinity)
@@ -61,6 +66,22 @@ struct SearchView: View {
                             if minY < height && vm.results.count > 0{
                                                     // Load more items
                                                     print("REACHED THE BOTTOM OF THE SCROLL VIEW, load more")
+                                
+                                                Task{
+//                                                    DispatchQueue.main.async {
+                                                        if vm.page < vm.total_pages{
+                                                            fetchingMoreMovies = true
+                                                            
+                                                            await vm.searchNewPage(searchText)
+                                                            fetchingMoreMovies = false
+                                                        }else{
+                                                            print("FINAL PAGE!")
+                                                            fetchingMoreMovies = false
+                                                        }
+                                                        
+//                                                    }
+                                                   
+                                                }
                                                 }
                                                 return Color.clear
                                             }
@@ -77,22 +98,32 @@ struct SearchView: View {
 class SearchViewModel: ObservableObject {
     @Published var results: [Movie] = []
     @Published var isloading: Bool = false
+    @Published var page: Int = 1
+    @Published var total_pages: Int = 1
+    @Published var query: String = ""
+    @Published var newQuery: Bool = false
     func search(_ text: String) async {
+        
         var text = text
+       
         if text.isEmpty {
             return
         }
+        
         DispatchQueue.main.async {
             self.isloading = true
+            self.page = 1
         }
-        let components = text.split(separator: " ")
+        
+        var components = text.split(separator: " ")
+        components = components.filter{$0 != " " || $0 != ""}
         print(components)
        
         if components.count > 1 {
             text = components.joined(separator: "+")
         }
         
-       guard let url = URL(string: "https://api.themoviedb.org/3/search/movie?api_key=\(Keys.API_KEY)&language=en-US&query=\(text)")
+       guard let url = URL(string: "https://api.themoviedb.org/3/search/movie?api_key=\(Keys.API_KEY)&language=en-US&query=\(text)&page=\(1)")
            
         else{
            return
@@ -104,17 +135,106 @@ class SearchViewModel: ObservableObject {
            let data = try await r.fetch()
             let movieResponse = decode(data, type: MovieResponse.self)
             if movieResponse != nil {
+                
                 DispatchQueue.main.async {
-                    
+                    self.total_pages = movieResponse!.total_pages
                     self.results = movieResponse!.results
-                  
                     self.isloading = false
                 }
                 
             }else{
-                print("response was empty")
-                self.results = []
+                DispatchQueue.main.async {
+                    print("response was empty")
+                    self.results = []
+                    self.isloading = false
+                }
+               
+            }
+            
+        }
+        catch{
+            print("Error getting search results \(error)")
+            self.results = []
+            self.isloading = false
+        }
+    }
+    
+    
+    func searchNewPage(_ text: String) async {
+        var text = text
+       
+        if text.isEmpty {
+            return
+        }
+         
+       
+       
+        DispatchQueue.main.async {
+            self.isloading = true
+            self.page += 1
+            print("PAGE \(self.page)")
+            if self.page > self.total_pages {
+                print("hit the last page!")
+                
                 self.isloading = false
+                
+                return
+            }
+        }
+        
+       
+        
+        let components = text.split(separator: " ")
+        print(components)
+       
+        if components.count > 1 {
+            text = components.joined(separator: "+")
+        }
+        
+        guard let url = URL(string: "https://api.themoviedb.org/3/search/movie?api_key=\(Keys.API_KEY)&language=en-US&query=\(text)&page=\(self.page)")
+        else{
+           return
+       }
+        
+        
+                
+       
+        print("URL \(url)")
+        let r = Request(url: url)
+        do{
+            
+           let data = try await r.fetch()
+            let movieResponse = decode(data, type: MovieResponse.self)
+            if movieResponse != nil {
+                DispatchQueue.main.async {
+
+                    if self.page > 1{
+                        print(movieResponse!.results.count)
+                      
+                        let count = self.results.filter { movie in
+                            movieResponse?.results.map { $0.id }.contains(movie.id) ?? false
+                        }.count
+                        
+                       
+                        if count == 0 {
+                            self.results.append(contentsOf: movieResponse!.results)
+                        }
+                       
+                        self.isloading = false
+                    }else{
+                        self.results = movieResponse!.results
+                        self.isloading = false
+                    }
+                   
+                }
+                
+            }else{
+                DispatchQueue.main.async {
+                    print("response was empty")
+                    self.results = []
+                    self.isloading = false
+                }
+               
             }
             
         }

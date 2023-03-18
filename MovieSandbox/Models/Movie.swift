@@ -10,6 +10,8 @@ import SwiftUI
 
 struct MovieResponse: Decodable {
     var results: [Movie]
+    var total_pages: Int
+    var total_results: Int
 }
 
 struct Movie: Decodable, Identifiable{
