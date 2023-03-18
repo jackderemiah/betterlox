@@ -55,7 +55,16 @@ struct SearchView: View {
                             .frame(maxWidth: .infinity)
                            
 //                        }
-                        
+                        GeometryReader { reader -> Color in
+                                                let minY = reader.frame(in: .global).minY
+                                                let height = UIScreen.main.bounds.height
+                            if minY < height && vm.results.count > 0{
+                                                    // Load more items
+                                                    print("REACHED THE BOTTOM OF THE SCROLL VIEW, load more")
+                                                }
+                                                return Color.clear
+                                            }
+                                            .frame(height: 1)
                     }
                 }
         }
@@ -84,11 +93,11 @@ class SearchViewModel: ObservableObject {
         }
         
        guard let url = URL(string: "https://api.themoviedb.org/3/search/movie?api_key=\(Keys.API_KEY)&language=en-US&query=\(text)")
-            
+           
         else{
            return
        }
-        
+        print("URL \(url)")
         let r = Request(url: url)
         do{
             
@@ -127,7 +136,7 @@ struct SearchBox: View {
                
             HStack{
                 Image(systemName: "magnifyingglass.circle")
-                    .foregroundColor(.orange)
+                    .foregroundColor(Color(.darkGray))
                 TextField("Search movies",text: $searchText)
                     .frame(maxWidth: UIScreen.main.bounds.width * 0.75)
                     .onSubmit {
