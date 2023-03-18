@@ -86,6 +86,8 @@ struct DetailedMovieView: View {
                                     }
                                    
                                 }
+                                
+                                
                             }
                             Spacer()
                             if poster != nil {
@@ -211,6 +213,9 @@ struct DetailedMovieView: View {
             x.genre_ids = movie.genre_ids as NSObject?
             x.overview = movie.overview
             x.popularity = movie.popularity ?? 0.0
+            let y = Watchlist(context: viewContext)
+            y.movie = x
+            
             do {
                 try viewContext.save()
                 return true

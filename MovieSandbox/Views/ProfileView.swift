@@ -14,22 +14,13 @@ struct ProfileView: View {
     @FetchRequest(entity: MovieItem.entity(), sortDescriptors: [])
     
     private var movies: FetchedResults<MovieItem>
-    @State var movieNatives: [Movie] = []
+   
     var body: some View {
-        
-        List {
-            ForEach(movies) { movie in
-               
-                
-                HStack{
-                    MovieRow(movie: movieFromMovieItem(movie))
-                }
-               
-                
-            }
-            .onDelete(perform: deleteItems)
-        }
-       
+        VStack(alignment: .leading){
+
+        WatchListView()
+        }.frame(maxWidth: .infinity)
+            .padding()
         
     }
     
@@ -61,5 +52,48 @@ struct ProfileView: View {
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
        
+    }
+}
+
+
+struct WatchListView: View {
+    @Environment(\.managedObjectContext) private var viewContext
+    @FetchRequest(entity: Watchlist.entity(), sortDescriptors: [])
+    private var watchlistMovies: FetchedResults<Watchlist>
+    var body: some View{
+        Text("Watchlist").font(.title).bold().foregroundColor(.orange)
+            .padding(.bottom)
+        List {
+            ForEach(watchlistMovies) { movie in
+               
+                
+                HStack{
+                    MovieRow(movie: movieFromWatchlist(movie)!)
+                }
+               
+                
+            }
+            .onDelete(perform: deleteItems)
+        }
+        
+
+
+
+       
+    }
+    
+    private func deleteItems(offsets: IndexSet) {
+        withAnimation {
+            offsets.map { watchlistMovies[$0] }.forEach(viewContext.delete)
+
+            do {
+                try viewContext.save()
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+        }
     }
 }

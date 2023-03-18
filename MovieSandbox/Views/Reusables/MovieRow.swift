@@ -11,7 +11,7 @@ struct MovieRow: View {
     var movie: Movie
     @State var poster: UIImage? = nil
     var body: some View {
-        LazyHStack{
+        HStack{
             if poster != nil{
                 Image(uiImage: poster!)
                     .resizable()

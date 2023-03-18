@@ -32,35 +32,29 @@ struct SearchView: View {
                                 Image(systemName: "paperplane.circle")
                                     .resizable()
                                     .frame(width: 30, height: 30)
+                                    .foregroundColor(.orange)
+                                    .padding(.bottom)
                             }
                         }
                         
-                        VStack(alignment: .leading){
-                            if !vm.isloading {
-                                GridView(movies: vm.results)
-//                                ForEach(vm.results){ movie in
-//                                    if movie.title != nil {
-//                                        NavigationLink{
-//                                            DetailedMovieView(movie: movie)
-//                                        }label:{
-////                                            MovieRow(movie: movie)
-//                                            Text(movie.title ?? "")
-//                                                .foregroundColor(.white.opacity(0.8))
-//                                                .bold()
-//                                                .lineLimit(1)
-//                                                .frame(maxWidth: UIScreen.main.bounds.width * 0.9, alignment: .leading)
-//                                                .padding(.bottom)
-//
-//                                        }
-//
-//                                    }
-//
-//                                }
-                            }else{
-                                ProgressView().frame(width: 50, height: 50)
+//                        List {
+                           
+                                VStack(alignment: .leading){
+                                    ForEach(vm.results) { movie in
+                                   
+                                        NavigationLink {
+                                            DetailedMovieView(movie: movie)
+                                        }label:{
+                                            MovieRow(movie: movie)
+                                        }
+                                        
+                                   
+                                }
+                             
                             }
-                            
-                        }
+                            .frame(maxWidth: .infinity)
+                           
+//                        }
                         
                     }
                 }
@@ -127,22 +121,49 @@ struct SearchBox: View {
     @Binding var searchText: String
     var callback: () async -> Void
     var body: some View {
-        ZStack(alignment:.topLeading) {
+        ZStack(alignment:.topLeading){
             Rectangle()
-                .foregroundColor(Color(uiColor: .darkGray).opacity(0.5))
-                .frame(width: UIScreen.main.bounds.width * 0.75, height: 50)
-                .cornerRadius(10)
-            TextField("Search movies", text: $searchText)
-                .padding()
-                .frame(maxWidth: UIScreen.main.bounds.width * 0.75)
-                .onSubmit {
-                    Task {
-                        await callback()
+                .fill(Color(uiColor: .darkGray).opacity(0.5))
+               
+            HStack{
+                Image(systemName: "magnifyingglass.circle")
+                    .foregroundColor(.orange)
+                TextField("Search movies",text: $searchText)
+                    .frame(maxWidth: UIScreen.main.bounds.width * 0.75)
+                    .onSubmit {
+                        Task {
+                            await callback()
+                        }
+                       
                     }
-                   
+                if searchText.count > 0 {
+                    Button{
+                        searchText = ""
+                    }label: {
+                        Image(systemName: "x.circle.fill")
+                            .foregroundColor(Color(.darkGray))
+                        
+                    }
+                }else{
+                    Button{
+                        print("")
+                    }label: {
+                        Image(systemName: "x.circle.fill")
+                            .foregroundColor(Color(.clear))
+                        
+                    }
                 }
-        }
+                
+                
+                
+            }.padding()
+                .zIndex(1)
+            
+        }.frame(width: UIScreen.main.bounds.width * 0.85, height: UIScreen.main.bounds.height * 0.05, alignment: .center)
+            .padding(.bottom, 20)
+
 
     }
    
 }
+
