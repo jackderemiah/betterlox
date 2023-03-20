@@ -16,6 +16,9 @@ struct ProfileView: View {
     private var movies: FetchedResults<MovieItem>
    
     var body: some View {
+        NavigationView {
+            
+        
         VStack(alignment: .leading){
 
         WatchListView()
@@ -23,7 +26,7 @@ struct ProfileView: View {
         WatchedView()
         }.frame(maxWidth: .infinity)
             .padding()
-        
+        }
     }
     
 
@@ -68,10 +71,14 @@ struct WatchListView: View {
         List {
             ForEach(watchlistMovies) { movie in
                
-                
-                HStack{
-                    MovieRow(movie: movieFromWatchlist(movie)!)
+                NavigationLink{
+                    DetailedMovieView(movie: movieFromWatchlist(movie)!)
+                }label:{
+                    HStack{
+                        MovieRow(movie: movieFromWatchlist(movie)!)
+                    }
                 }
+               
                
                 
             }
@@ -106,15 +113,22 @@ struct WatchedView: View {
     @FetchRequest(entity: Watched.entity(), sortDescriptors: [])
     private var watched: FetchedResults<Watched>
     var body: some View{
+       
+            
+        
         Text("Watched").font(.title).bold().foregroundColor(.orange)
             .padding(.bottom)
         List {
             ForEach(watched) { movie in
                
-                
-                HStack{
-                    MovieRow(movie: movieFromWatched(movie)!)
+                NavigationLink{
+                    Text("Write a review for \(movieFromWatched(movie)?.title ?? "")")
+                }label: {
+                    HStack{
+                        MovieRow(movie: movieFromWatched(movie)!)
+                    }
                 }
+              
                
                 
             }
@@ -124,7 +138,7 @@ struct WatchedView: View {
 
 
 
-       
+     
     }
     
     

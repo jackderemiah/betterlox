@@ -17,26 +17,26 @@ struct SearchView: View {
             
       
                 VStack(alignment: .leading){
-                    
+                    HStack{
+                        SearchBox(searchText: $searchText, callback: { await vm.search(searchText) } )
+                        Button{
+                            Task{
+                                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                                await vm.search(searchText)
+                               
+                            }
+                        }label: {
+                            Image(systemName: "paperplane.circle")
+                                .resizable()
+                                .frame(width: 30, height: 30)
+                                .foregroundColor(.orange)
+                                .padding(.bottom)
+                        }
+                    }
                     
                     ScrollView{
                         
-                        HStack{
-                            SearchBox(searchText: $searchText, callback: { await vm.search(searchText) } )
-                            Button{
-                                Task{
-                                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-                                    await vm.search(searchText)
-                                   
-                                }
-                            }label: {
-                                Image(systemName: "paperplane.circle")
-                                    .resizable()
-                                    .frame(width: 30, height: 30)
-                                    .foregroundColor(.orange)
-                                    .padding(.bottom)
-                            }
-                        }
+                      
                         
 //                        List {
                            
@@ -253,6 +253,9 @@ struct SearchBox: View {
         ZStack(alignment:.topLeading){
             Rectangle()
                 .fill(Color(uiColor: .darkGray).opacity(0.5))
+                .cornerRadius(12)
+                .frame(maxHeight: UIScreen.main.bounds.height * 0.04)
+                .padding(.top, 10)
                
             HStack{
                 Image(systemName: "magnifyingglass.circle")
