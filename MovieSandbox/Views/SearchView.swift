@@ -41,13 +41,20 @@ struct SearchView: View {
 //                        List {
                            
                                 VStack(alignment: .leading){
-                                    ForEach(vm.results) { movie in
-                                   
-                                        NavigationLink {
-                                            DetailedMovieView(movie: movie)
-                                        }label:{
-                                            MovieRow(movie: movie)
+                                    ForEach(vm.results, id: \.?.id) { movie in
+                                        if movie != nil {
+                                            NavigationLink {
+                                                DetailedMovieView(movie: movie!)
+                                            }label:{
+                                                MovieRow(movie: movie!)
+                                            }
                                         }
+                                        else{
+                                            HStack{
+                                                ProgressView()
+                                            }
+                                        }
+                                        
                                         
                                    
                                 }
@@ -96,7 +103,7 @@ struct SearchView: View {
 }
 
 class SearchViewModel: ObservableObject {
-    @Published var results: [Movie] = []
+    @Published var results: [Movie?] = []
     @Published var isloading: Bool = false
     @Published var page: Int = 1
     @Published var total_pages: Int = 1
@@ -138,6 +145,11 @@ class SearchViewModel: ObservableObject {
                 
                 DispatchQueue.main.async {
                     self.total_pages = movieResponse!.total_pages
+                    self.results = Array<Movie?>(repeating: nil, count: movieResponse!.total_results)
+                    for (i, j) in movieResponse!.results.enumerated(){
+                        self.results[i] = movieResponse!.results[i]
+                    }
+                    
                     self.results = movieResponse!.results
                     self.isloading = false
                 }
@@ -212,7 +224,7 @@ class SearchViewModel: ObservableObject {
                         print(movieResponse!.results.count)
                       
                         let count = self.results.filter { movie in
-                            movieResponse?.results.map { $0.id }.contains(movie.id) ?? false
+                            movieResponse?.results.map { $0.id }.contains(movie!.id) ?? false
                         }.count
                         
                        
